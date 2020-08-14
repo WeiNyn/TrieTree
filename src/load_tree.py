@@ -1,6 +1,6 @@
-from ..src.TreeBuilder import TreeBuilder
-from ..src import TreeBuilder as TB
-from ..src import TrieTree as TT
+from src.TreeBuilder import TreeBuilder
+from src import TreeBuilder as TB
+from src import TrieTree as TT
 import pickle
 
 import sys

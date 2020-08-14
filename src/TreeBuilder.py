@@ -6,7 +6,7 @@ from typing import List, Tuple
 
 import pandas as pd
 
-from ..src.TrieTree import TrieTree
+from src.TrieTree import TrieTree
 
 logger.basicConfig(level=logger.INFO)
 
@@ -31,6 +31,9 @@ class TreeBuilder:
         if eva:
             self.evaluate()
         self.score: Tuple[float, float] = (0.0, 0.0)
+
+    def __str__(self):
+        return str(self.tree)
 
     def _build_data_frame(self, file: str, desc_col: str, label: str):
         df = pd.read_csv(file)

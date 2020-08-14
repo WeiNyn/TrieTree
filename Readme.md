@@ -6,7 +6,7 @@
 
 # Usage
 
-Place folder TrieTree in your project
+Place folder TrieTree/src in your project
 Install dependencies
 ```
 pip install -r requirements.txt
@@ -16,8 +16,8 @@ _____________________________________
 
 
 ```python
-from TrieTree.src.TreeBuilder import TreeBuilder
-from TrieTree.src.load_tree import load_tree
+from src.TreeBuilder import TreeBuilder
+from src.load_tree import load_tree
 ```
 _______________________________________________
 # Build and load
@@ -102,3 +102,4 @@ There are some log using logging, if you don't want these log show in console, t
 import logging as logger
 logger.basicConfig(level=logger.ERROR)
 ```
+Check the tester.py file for test these function.
