@@ -22,6 +22,7 @@ class TrieTree:
     def __init__(self, voc: List[str]):
         """
         Build a tree by using vocabulary
+
         :param voc: a list of characters to make a vocabulary
         """
         voc.sort()
