@@ -103,3 +103,6 @@ import logging as logger
 logger.basicConfig(level=logger.ERROR)
 ```
 Check the tester.py file for test these function.
+
+__________________________________________________________
+I made a new Tree by using bigger corpus at: https://drive.google.com/file/d/1t5b28FPr83JAhRmeVOEakm6AXSa3LAd7/view?usp=sharing
