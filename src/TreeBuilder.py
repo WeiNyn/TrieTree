@@ -48,7 +48,7 @@ class TreeBuilder:
         self.search_phrase: List[str] = []
         self.true_key: List[List[str]] = []
         for index, row in self.data_frame.iterrows():
-            products = row[label].replace("\r", " ") \
+            products: List[str] = row[label].replace("\r", " ") \
                 .replace("\n", " ") \
                 .replace("- ", "-") \
                 .replace(" -", "-") \
@@ -63,7 +63,7 @@ class TreeBuilder:
 
             products = [product.strip()
                         for product in products
-                        if len(product) > 3 and product.strip() in des]
+                        if len(product) > 3 and product.strip() in des and not product.strip().isdigit()]
 
             self.true_key.append(products)
             self.corpus += products
