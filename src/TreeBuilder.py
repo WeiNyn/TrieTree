@@ -6,7 +6,7 @@ from typing import List, Tuple
 
 import pandas as pd
 
-from src.TrieTree import TrieTree
+from ..src.TrieTree import TrieTree
 
 logger.basicConfig(level=logger.INFO)
 
