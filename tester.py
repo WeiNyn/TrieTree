@@ -7,21 +7,29 @@ tree_or: TreeBuilder = TreeBuilder(file="CM Description within Context - cm_desc
                                    label="CM_DESCRIPTION_OPTIONAL_USER_INPUT")
 
 print("Tree: ", str(tree_or), "\n")
+"""-------------------------------------------------------------------------------------------------------"""
+
 
 """This way will load a tree from file"""
 tree: TreeBuilder = load_tree(file="TrieTree.tte")
 
 print("Tree from file: ", str(tree), "\n")
+"""-------------------------------------------------------------------------------------------------------"""
+
 
 """To save a tree to file"""
 save_result = tree.save_tree("NewTrieTree.tte")
 print("Save Tree: ", str(save_result), "\n")
+"""-------------------------------------------------------------------------------------------------------"""
+
 
 """To search keyword in function"""
 sentence = """1 x 40'HC SAID TO CONTAIN :- 31 ROLLS (31 PALLETS) SARAFIL POLYESTER FILM BRAND NAME: SARAFIL INVOICE NO.X20-2100882 DATED: 04/08/2020 PO NO. 3209993 (E030-53590) H.S.CODE : 3920.62.0090  NET WEIGHT: 17,573.39 KGS GROSS WEIGHT : 42,167.07 LBS  PUBLIC COMPANY LTD."""
 output = tree.search(sentence=sentence)
 
 print("Search result: ", str(output), "\n")
+"""-------------------------------------------------------------------------------------------------------"""
+
 
 """output = (['SARAFIL POLYESTER FILM'], 0.0)"""
 
@@ -33,6 +41,8 @@ sentences = [
 outputs = tree.search_many(sentences=sentences)
 
 print("Search results: ", str(outputs), "\n")
+"""-------------------------------------------------------------------------------------------------------"""
+
 
 """output = [(['AS PER ATTACHED', 'AS PER ATTACHED SHEET'], 0.0),
            (['AIR', '(AIR FRESHENER SPRAY)', 'SPRAY'], 0.0)]"""
@@ -45,6 +55,8 @@ print("Check keyword: ", tree.is_in_corpus("New keyword"), "\n")
 tree.add_corpus(corpus=new_keywords)
 
 print("Check keyword after insert: ", tree.is_in_corpus("New keyword"), "\n")
+"""-------------------------------------------------------------------------------------------------------"""
+
 
 """This will ignore some keyword that contain unknown characters. If you still want to ad it, please build the Tree again."""
 
@@ -52,6 +64,8 @@ print("Check keyword after insert: ", tree.is_in_corpus("New keyword"), "\n")
 df = tree.extract_corpus()
 
 print("Corpus that extracted from tree:\n ", df.head(5), "\n")
+"""-------------------------------------------------------------------------------------------------------"""
+
 
 """Keep DataFrame in Tree can be costly, clear the tree by"""
 tree.clean_tree()
