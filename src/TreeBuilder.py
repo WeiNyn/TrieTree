@@ -100,7 +100,13 @@ class TreeBuilder:
         for sentence, true_key, predicted in zip(self.search_phrase[:min(100, len(self.search_phrase))], self.true_key,
                                                  predicted_list):
             total_word_count += len(true_key)
-            true_count: int = len(list(set(true_key).intersection(set(predicted))))
+            true_count = 0
+            for key in true_key:
+                for pred in predicted:
+                    if key in pred:
+                        true_count += 1
+                        break
+            # true_count: int = len(list(set(true_key).intersection(set(predicted))))
             if true_count < len(list(set(true_key))):
                 self.fail_test.append([sentence, true_key, predicted])
 
