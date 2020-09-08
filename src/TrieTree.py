@@ -125,7 +125,8 @@ class TrieTree:
                 cur_word += char
                 if cur_node.child_nodes[idx].isEOW:
                     found_words.append(cur_word)
-                    mark_idx = index
+                    if mark_idx == 0:
+                        mark_idx = index
 
                 cur_node = cur_node.child_nodes[idx]
 
