@@ -15,6 +15,21 @@ class TrieNode:
     def __str__(self):
         return f"child: {[x for x in self.child_nodes if x is not None]}"
 
+    def add_voc(self, number: int) -> bool:
+        try:
+            self.voc_size += number
+            self.child_nodes += [None] * number
+
+            if not any(self.child_nodes):
+                return False
+            else:
+                for child_node in self.child_nodes:
+                    if child_node:
+                        child_node.add_voc(number=number)
+                return True
+        except Exception as ex:
+            return False
+
 
 class TrieTree:
     """src object"""
@@ -35,6 +50,19 @@ class TrieTree:
         self.separators: List[str] = ["-", '"', "'", "("]
         self.root: TrieNode = TrieNode(voc_size=self.voc_size, is_eow=False)
         self.node_count = 1
+
+    def add_voc(self, new_vocs: List[str]) -> bool:
+        for voc in new_vocs:
+            if voc in self.separators:
+                raise Exception(
+                    "New vocabulary can not in separators, please remove it first or remove the separators from tree.separators")
+        for voc in new_vocs:
+            self.char2idx[voc] = self.voc_size + new_vocs.index(voc)
+            self.idx2char.append(voc)
+
+        self.voc_size += len(new_vocs)
+
+        self.root.add_voc(number=len(new_vocs))
 
     def __str__(self):
         return f"Tree with {self.node_count} nodes"

@@ -143,15 +143,33 @@ class TreeBuilder:
         :param corpus: list of keyword to insert
         :return: return nothing
         """
+
+        new_vocs = []
+        fail_words = []
+
         for words in corpus:
             if words not in self.search(sentence=words):
                 if not self.tree.insert(words=words):
                     self.fail_case.append(words)
                     logger.debug("Can not insert words: ", words)
+                    for char in words:
+                        if char not in self.voc:
+                            new_vocs.append(char)
+                            fail_words.append(words)
+
                 else:
                     self.corpus.append(words)
             else:
                 logger.info(f"{words} was already in corpus")
+
+        new_vocs = list(set(new_vocs))
+        fail_words = list(set(fail_words))
+
+
+        if len(new_vocs):
+            logger.info(f"New vocab found: {new_vocs} -> process to insert them")
+            self.tree.add_voc(new_vocs=new_vocs)
+            self.add_corpus(corpus=fail_words)
 
     @staticmethod
     def reprocess(text: str) -> str:
